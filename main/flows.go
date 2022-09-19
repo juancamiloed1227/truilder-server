@@ -36,7 +36,7 @@ func (rs flowResource) Routes() chi.Router {
 		r.Use(PostCtx)
 		r.Get("/", rs.Get)       // GET /flows/{id} - Read a single flow by id
 		r.Put("/", rs.Update)    // PUT /flows/{id} - Update a single flow by id
-		r.Delete("/", rs.Delete) // DELETE /posts/{id} - Delete a single post by :id
+		r.Delete("/", rs.Delete) // DELETE /flows/{id} - Delete a single flow by id
 	})
 
 	return r
