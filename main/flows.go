@@ -44,7 +44,7 @@ func (rs flowResource) Routes() chi.Router {
 
 // Request Handler - GET /flows - Read a list of flows.
 func (rs flowResource) List(w http.ResponseWriter, r *http.Request) {
-	graphqlClient := graphql.NewClient("https://blue-surf-600082.us-east-1.aws.cloud.dgraph.io/graphql")
+	graphqlClient := graphql.NewClient("")
 	graphqlRequest := graphql.NewRequest(`
         query {
             queryFlow {
@@ -78,7 +78,7 @@ func (rs flowResource) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	graphqlClient := graphql.NewClient("https://blue-surf-600082.us-east-1.aws.cloud.dgraph.io/graphql")
+	graphqlClient := graphql.NewClient("")
 	query := fmt.Sprintf(`
 		mutation addFlow {
 				addFlow(input: {title: "%s", content: "%s"}) {
@@ -144,7 +144,7 @@ func PostCtx(next http.Handler) http.Handler {
 func (rs flowResource) Get(w http.ResponseWriter, r *http.Request) {
 	id := r.Context().Value("id").(string)
 
-	graphqlClient := graphql.NewClient("https://blue-surf-600082.us-east-1.aws.cloud.dgraph.io/graphql")
+	graphqlClient := graphql.NewClient("")
 	query := fmt.Sprintf(`
 		query {
 			getFlow(id: "%s") {
@@ -182,7 +182,7 @@ func (rs flowResource) Update(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	graphqlClient := graphql.NewClient("https://blue-surf-600082.us-east-1.aws.cloud.dgraph.io/graphql")
+	graphqlClient := graphql.NewClient("")
 	query := fmt.Sprintf(`
 		mutation updateFlow {
 			updateFlow(input: {filter: {id: "%s"}, set: {content: "%s", title: "%s"}}) {
@@ -210,7 +210,7 @@ func (rs flowResource) Update(w http.ResponseWriter, r *http.Request) {
 func (rs flowResource) Delete(w http.ResponseWriter, r *http.Request) {
 	id := r.Context().Value("id").(string)
 
-	graphqlClient := graphql.NewClient("https://blue-surf-600082.us-east-1.aws.cloud.dgraph.io/graphql")
+	graphqlClient := graphql.NewClient("")
 	query := fmt.Sprintf(`
 		mutation deleteFlow {
 			deleteFlow(filter: {id: "%s"}) {
